@@ -1,0 +1,48 @@
+name: mtl
+trainer: mtldesc_trainer.MTLDescTrainer
+
+model:
+    backbone: network.MTLDesc
+
+    name: MTLDesc
+    detection_threshold: 0.9
+    weight_path: "../ckpt"
+    ckpt_name: mtl_awdesc_ac #mtl_mtl_6 #scalepoint_evo_old #scalepoint_mulhead
+    weights_id: '32'
+
+train:
+    adjust_lr: true
+    # lr: 0.001
+    lr: 0.0005
+
+    weight_decay: 0.0001
+    lr_mod: LambdaLR
+    # batch_size: 12
+    batch_size: 8
+
+
+    epoch_num: 50
+    maintain_epoch: 0
+    decay_epoch: 60
+    log_freq: 100
+
+    # num_workers: 8
+    num_workers: 8
+
+    validate_after: 1000
+
+    dataset: megadepth_train_dataset.MegaDepthTrainDataset
+    mega_image_dir: ../../Mega_train/image
+    mega_keypoint_dir: ../../Mega_train/keypoint
+    mega_despoint_dir: ../../Mega_train/despoint
+    height: 400
+    width: 400
+
+    T: 15
+    fix_grid_option: 400
+    fix_sample: false
+    rotation_option: none
+    do_augmentation: true
+    sydesp_type: nomal # random
+    point_loss_weight: 200
+    w_weight: 0.1

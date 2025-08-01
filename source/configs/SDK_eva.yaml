@@ -1,0 +1,24 @@
+hpatches:
+    dataset_dir: hpatches_sequences/hpatches-sequences-release
+    # dataset_dir: hpatches_sequences/hpatches-sequences-release-rotated
+
+    resize: false
+    grayscale: false
+
+model:
+    name: SDK
+    backbone: network.SDK
+    detection_threshold: 0.9
+    nms_dist: 4
+    nms_radius: 4
+    border_remove: 4
+    weight_path: "../ckpt"
+    ckpt_name: SDK
+
+
+    weights_id: '00'
+
+keys: keypoints,descriptors,shape
+output_type: normal #benchmark normal
+
+
